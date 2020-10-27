@@ -29,4 +29,56 @@ def get_mnist():
 X_train, Y_train, X_test, Y_test = get_mnist()
 
 
+def connected_layer(inputs, outputs):
+    return np.ones([inputs, outputs])
+
+def neural_net():
+    ''' creates simple neural net '''
+    first_layer = connected_layer(2, 3)
+    second_layer = connected_layer(3, 3)
+    output_layer = connected_layer(3, 2)
+    return [first_layer, second_layer, output_layer]
+
+os.getcwd()
+
+import tensor.neural_net  
+
+print(neural_net())
+
+neural_net()
+
+
+def reLU(layer):
+    return np.maximum(np.zeros([layer.shape[0],layer.shape[1]]),layer)
+
+def soft_max(input):
+    return np.exp(input) / np.sum(np.exp(input), axis=0)
+
+def generate_random_dataset(n):
+    x = np.ones([n,1])
+    y = np.random.randint(2,size=n)
+    return np.array(y,x-y)
+
+
+def forward_pass(input, neural_net):
+    activation = input
+    for weight_layer in neural_net:
+        weighted_sum = np.dot(weight_layer.T, activation)
+        activation = reLU(weighted_sum)
+    return soft_max(activation)
+
+pred = (forward_pass(np.ones([2,1]), neural_net()))
+
+
+from math import log2
+
+def cross_entropy(pred, label):
+    return -sum([label[i]*log2(pred[i]) for i in range(len(pred))])
+
+print(cross_entropy(pred, np.array([0,3])))
+
+
+# backprop
+
+
 
