@@ -7,7 +7,8 @@ In this project I am working through George Hotz's tinygrad/ Andrej Karpathy's m
 
 
 ## results:
-
+Testing shows that loss can be minimized. I am intrigued!
+![Test img](/test/loss.png)
 
 
 
