@@ -1,7 +1,4 @@
 import math
-
-
-import math
 class Var:
     """ stores a single scalar value and its gradient """
 
